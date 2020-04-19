@@ -16,12 +16,22 @@ $(document).ready(function() {
 // $('#btn').onclick = "search()";
 
 async function search() {
+	board = await document.getElementById('board').value;
+	kw = document.getElementById('kw').value;
+
+	if (board != "") {
+		var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~!@#￥……&*()——|{}【】‘;:”“'。,、?%]");
+		var m1 = board.match(pattern);
+		var m2 = kw.match(pattern);
+		if (m1 != null || m2 != null) {
+			alert("請勿輸入特殊符號!");
+			return;
+		}
+	}
 	console.log("start search");
 	$('#d1').css("display", "none");
 	$('#d2').css("display", "none");
 	$('#wc').css("display", "none");
-	board = await document.getElementById('board').value;
-	kw = document.getElementById('kw').value;
 
 	document.getElementById('result').innerHTML = "";
 	document.getElementById('hot').innerHTML = "";
@@ -31,15 +41,14 @@ async function search() {
 	$('#sp2').css("display", "block");
 	$('#d2').css("display", "block");
 	$('#sp3').css("display", "block");
-
-
+	
 	if (board == "") board = "default";
 	if (kw == "") kw = "default";
 	console.log("board: %s, kw: %s", board, kw);
 
 	// 處理 data
 	var xhr1 = new XMLHttpRequest;
-	var url1 = "https://cors-anywhere.herokuapp.com/https://crawler4ptt.herokuapp.com/search/" + board + "/" + kw;
+	var url1 = "https://crawler4ptt.herokuapp.com/search/" + board + "/" + kw;
 	xhr1.open('GET', url1);
 	xhr1.responseType = 'json';
 	xhr1.send();
@@ -52,7 +61,7 @@ async function search() {
 	}
 
 	var xhr2 = new XMLHttpRequest;
-	var url2 = "https://cors-anywhere.herokuapp.com/https://crawler4ptt.herokuapp.com/wc/" + board;
+	var url2 = "https://crawler4ptt.herokuapp.com/wc/" + board;
 	xhr2.open('GET', url2);
 	xhr2.responseType = 'json';
 	xhr2.send();
@@ -97,7 +106,7 @@ async function new_news() {
 	// 處理 data
 	console.log('page loading');
 	var xhr1 = new XMLHttpRequest;
-	var url1 = "https://cors-anywhere.herokuapp.com/https://crawler4ptt.herokuapp.com/news";
+	var url1 = "https://crawler4ptt.herokuapp.com/news";
 	xhr1.open('GET', url1);
 	xhr1.responseType = 'json';
 	xhr1.send();
