@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $('#d1').css("display", "none");
     $('#d2').css("display", "none");
-    $('#demo').css("display", "none");
+    $('#caro').css("display", "none");
     $('#prev').css("visibility", "hidden");
     $('#next').css("visibility", "hidden");
     $('#indi').css("visibility", "hidden");
@@ -109,7 +109,7 @@ async function new_news() {
         document.getElementById('n3').innerHTML = hot_news[2];
         document.getElementById('n4').innerHTML = hot_news[3];
         document.getElementById('n5').innerHTML = hot_news[4];
-        $('#demo').css("display", "block");
+        $('#caro').css("display", "block");
         $('#prev').css("visibility", "visible");
         $('#next').css("visibility", "visible");
         $('#indi').css("visibility", "visible");
